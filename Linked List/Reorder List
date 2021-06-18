@@ -1,0 +1,27 @@
+   TC=O(N^2),SC=O(1)
+   1) Initialize current node as head.
+   2) While next of current node is not null, do following
+     a) Find the last node, remove it from the end and insert it as next
+       of the current node.
+     b) Move current to next to next of current
+    
+  
+ TC=O(N),SC=O(1)
+    void reorderList(ListNode* head) {
+    ListNode*mid=middleNode(head);
+    ListNode*nhead=mid->next;
+    mid->next=NULL;
+    nhead=reverseList(nhead);
+    
+    ListNode*c1=head;
+    ListNode*c2=nhead;
+    ListNode*f1;ListNode*f2;
+      while(c1!=NULL && c2!=NULL)
+      {
+         f1=c1->next;
+         f2=c2->next;
+         c1->next=c2;
+         c2->next=f1;
+        c1=f1;c2=f2;
+      }
+      return;}
