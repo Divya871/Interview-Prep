@@ -1,0 +1,66 @@
+TC=O(L),SC=O(L)----L=length of LL
+
+-->We all know that stack is based on FILO(First In Last Out) principle.
+-->We will keep pushing all the elements of Linked List into the stack.
+-->once the linked list is fully traversed we will start popping the elements out of the stack and comparing with the linked list’s elements.
+
+TC=O(N),SC=O(1)
+
+ListNode*midNode(ListNode*head)
+  {
+    ListNode*slow=head;
+    ListNode*fast=head;
+    while(fast->next!=NULL && fast->next->next!=NULL)
+    {
+      slow=slow->next;
+      fast=fast->next->next;
+    }
+    
+    return slow;
+  }
+  
+  ListNode*reverse(ListNode*head)
+  {
+    ListNode*prev=NULL;
+    ListNode*curr=head;
+    ListNode*n;
+    while(curr!=NULL)
+    {
+      n=curr->next;
+      curr->next=prev;
+      prev=curr;
+      curr=n;
+    }
+    head=prev;
+    return head;
+  }
+  
+    bool isPalindrome(ListNode* head) {
+        ListNode*mid=midNode(head);
+        ListNode*nhead=mid->next;
+        mid->next=NULL;
+        nhead=reverse(nhead);
+        
+        ListNode*c1=head;
+        ListNode*c2=nhead;
+      while(c1!=NULL && c2!=NULL)
+      {
+        if(c1->val!=c2->val)
+        {
+          return false;
+        }
+        
+        c1=c1->next;
+        c2=c2->next;
+      }
+      return true;
+        
+  }
+  
+  //RECURSIVE APPROACH
+  
+  TC=O(N),SC=O(N) //stack space
+  
+  
+  
+  
