@@ -1,0 +1,32 @@
+ TC=O(N),SC=O(1)
+ 
+ //Iterative Approach
+ 
+ ListNode* reverseList(ListNode* head) {
+        ListNode*prev=NULL;
+        ListNode*curr=head;
+        ListNode*n;
+        while(curr!=NULL)
+        {
+          n=curr->next;
+          curr->next=prev;
+          prev=curr;
+          curr=n;
+        }
+      head=prev;
+      return head;
+    }
+    
+TC=O(N),SC=O(N)
+
+//Recursive Approach
+
+ ListNode* reverseList(ListNode* head) {
+      
+        if(head==NULL || head->next==NULL){return head;}
+        ListNode*temp=head->next;
+        head->next=NULL;
+        ListNode*r=reverseList(temp);
+        temp->next=head;
+        return r;
+      }
