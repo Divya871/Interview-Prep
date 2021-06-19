@@ -1,0 +1,43 @@
+ Node* segregate(Node *head) {
+        
+        // Add code here
+        Node*dummy0=new Node(-1);
+        Node*p0=dummy0;
+        Node*zero=dummy0;
+        
+        Node*dummy1=new Node(-1);
+        Node*p1=dummy1;
+        Node*one=dummy1;
+        
+        Node*dummy2=new Node(-1);
+        Node*p2=dummy2;
+        Node*two=dummy2;
+        
+        Node*curr=head;
+        while(curr!=NULL){
+        if(curr->data==0)
+        {
+          p0->next=curr;
+          curr=curr->next;
+          p0=p0->next;
+        }
+        else  if(curr->data==1)
+        {
+          p1->next=curr;
+          curr=curr->next;
+          p1=p1->next;
+        }
+        else
+        if (curr->data==2)
+        {
+          p2->next=curr;
+          curr=curr->next;
+          p2=p2->next;
+        }
+        
+    }
+    p0->next=dummy1->next?dummy1->next:dummy2->next;
+    p1->next=two->next;
+    p2->next=NULL;
+    head=zero->next;
+    return head;}
