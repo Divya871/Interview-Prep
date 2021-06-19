@@ -1,0 +1,9 @@
+TC=O(NlogN),SC=O(1)
+
+ListNode *sortList(ListNode *head){
+      if(head==NULL || head->next==NULL){return head;}
+       ListNode*mid=midNode(head);
+       ListNode*nhead=mid->next;
+       mid->next=NULL;
+      return mergeTwoLists(sortList(head),sortList(nhead));
+    }
