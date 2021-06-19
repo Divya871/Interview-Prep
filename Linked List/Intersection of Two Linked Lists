@@ -1,0 +1,19 @@
+ TC=O(N^2)
+--> Use 2 nested for loops.
+ ->The outer loop will be for each node of the 1st list.
+ ->inner loop will be for 2nd list. 
+ ->In the inner loop, check if any of nodes of the 2nd list is same as the current node of the first linked list. 
+ 
+ TC=O(M+N),SC=O(1)
+ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        ListNode*tail=headA;
+        while(tail->next!=NULL)
+        {
+            tail=tail->next;
+        }
+        tail->next=headB;
+        ListNode*ans=detectCycle(headA);
+        tail->next=NULL;
+        return ans;
+    }
