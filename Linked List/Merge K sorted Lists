@@ -1,0 +1,30 @@
+TC=O(NK^2),SC=()
+
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.size()==0){return nullptr;}
+        ListNode*reflist=NULL;
+        for(int i=0;i<lists.size();i++)
+        {
+          reflist=mergeTwoLists(reflist,lists[i]);
+        }
+      return reflist;
+    }
+    
+TC=O(NK logK),SC=O(K)
+
+  ListNode*mergeList(vector<ListNode *> &lists,int si,int ei)
+   {if(si==ei){return lists[si];}
+       int mid=(si+ei)/2;
+       ListNode*l1=mergeList(lists,si,mid);
+       ListNode*l2=mergeList(lists,mid+1,ei);
+       return mergeTwoLists(l1,l2);
+   }
+   
+   
+    ListNode *mergeKLists(vector<ListNode *> &lists)
+    {
+        if(lists.size()==0)
+        {
+            return NULL;
+        }
+        return mergeList(lists,0,lists.size()-1);}
