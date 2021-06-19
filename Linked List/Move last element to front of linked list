@@ -1,0 +1,19 @@
+TC=O(N)
+
+void moveToFront(Node*head)
+{
+   if(head==NULL || head->next==NULL){return head;}   //NULL point exception check
+
+ Node*prev=NULL; Node*curr=head;                              // declaration
+
+while(curr->next!=NULL)
+{
+   prev=curr;
+curr=curr->next;
+}
+
+prev->next=NULL;
+curr->next=head;
+head=curr;
+return;
+}
