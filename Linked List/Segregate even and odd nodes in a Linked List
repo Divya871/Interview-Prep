@@ -1,0 +1,32 @@
+TC=O(N),SC=O(N)
+
+Node* divide(int N, Node *head){
+        // code here
+        Node*curr=head;
+        Node*evenDummy=new Node(-1);
+        Node*even=evenDummy;
+        
+        Node*oddDummy=new Node(-1);
+        Node*odd=oddDummy;
+        
+        while(curr!=NULL)
+        {
+            if(curr->data %2 !=0)
+            {
+                odd->next=curr;
+                curr=curr->next;
+                odd=odd->next;
+            }
+            else
+            {
+                even->next=curr;
+                curr=curr->next;
+                even=even->next;
+            }
+        }
+        
+        even->next=oddDummy->next;
+        odd->next=NULL;
+        return evenDummy->next;
+        
+    }
