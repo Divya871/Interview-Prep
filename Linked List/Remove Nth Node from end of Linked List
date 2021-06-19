@@ -1,0 +1,36 @@
+int nth(Node*head,int n)
+{
+    Node*c1=head;
+    Node*c2=head;
+    
+   while(n-->0)
+    {
+        c2=c2->next;
+    }
+    while(c2->next!=NULL)
+    {c1=c1->next;
+    c2=c2->next;}
+    
+    Node*temp=c1->next;
+    c1->next=temp->next;
+    temp->next=NULL;
+    return temp->data;
+}
+
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       Node*curr=head;
+       int len=0;
+       while(curr!=NULL)
+       {
+           len++;curr=curr->next;
+       }
+       
+       if(n>len){return -1;}   // case if n>len
+       if(n==len)              //case when head is to be deleted
+       {return head->data;}
+       
+        int ans=nth(head,n);    //case if n<len
+       return ans;
+}
