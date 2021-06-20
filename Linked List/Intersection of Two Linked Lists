@@ -1,8 +1,15 @@
- TC=O(N^2)
+ TC=O(M*N)
 --> Use 2 nested for loops.
  ->The outer loop will be for each node of the 1st list.
  ->inner loop will be for 2nd list. 
  ->In the inner loop, check if any of nodes of the 2nd list is same as the current node of the first linked list. 
+ 
+ TC=O(M+N),SC=O(N)--as we r only storing address of LL-1
+  
+  //using Hashing
+  
+ Traverse LL-1 and hash the node address.
+ Iterate for LL2 and check the address is similar to hashset address or not.
  
  TC=O(M+N),SC=O(1)
  ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
