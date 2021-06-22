@@ -1,0 +1,13 @@
+TC=O(N),SC=O(N)
+
+bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+      stack<int>st;int i=0,n=popped.size();
+     for(int ele:pushed)
+     { st.push(ele);
+      while(!st.empty() && st.top()==popped[i])
+      {st.pop();i++;}
+      
+    
+     }
+      return i==n;
+     }
