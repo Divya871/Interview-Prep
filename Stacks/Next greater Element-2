@@ -1,0 +1,23 @@
+      TC=O(N^2),SC=O(N)
+      Make a circular array. Then traverse like NGE
+      
+      
+      TC=O(N),SC=O(N)
+      
+      vector<int> nextGreaterElements(vector<int>& nums) {
+      int n=nums.size();
+      stack<int>st;
+      vector<int>ans;
+      ans.resize(n,-1);
+        for(int i=0;i<2*n;i++)
+        {
+          while(st.size()!=0 && nums[st.top()]<nums[i%n])
+          {
+            ans[st.top()]=nums[i%n];
+            st.pop();
+          }
+          if(i<n)
+          st.push(i);
+        }
+      return ans;
+      }
