@@ -1,0 +1,131 @@
+RECURSION
+TC=O(N),SC=O(N)
+
+ 
+
+-->If the root is equal to head, then we have traversed the whole linked list and have not found the given key. So, we will return head. ------->BASE CASE
+-->We will check if the value of the node is equal to the key. We have found the node with the given key, and we have to remove this node.
+-->So, we will return the next node of the root.
+-->Now, we have to make a recursive call to check all nodes of the remaining linked list. 
+-->We will set the next node of the root as deleteNodehelper(next, key, head), where next is equal to the next node of root.
+-->In the end, we will return the current node root.
+
+
+Node* helper(Node* root, int key, Node* head) 
+{
+    // Check if root is equal to head
+    if (root == head) 
+    {
+        return root;
+    }
+
+    // Check if the value of root node is equal to key
+    if (root -> data == key) 
+    {
+        Node * next = root -> next;
+    
+        delete root;
+        return next;
+    }
+
+    root -> next = helper(root -> next, key, head);
+
+    // Return the root node
+    return root;
+}
+
+Node* deleteNode(Node* head, int key) 
+{
+    // Check if head is equal to null
+    if (head == NULL) 
+    {
+        return NULL;
+    }
+
+    // Check if the value of head node is equal to key
+    if (head -> data == key) 
+    {
+        if (head == head -> next)
+        {
+            return NULL;
+        }
+
+        head = head -> next;
+    }
+
+    // Make recursive call
+    head -> next = helper(head -> next, key, head);
+
+    return head;
+}
+
+
+
+
+TC=O(N),SC=O(1)
+-->If the list is empty simply return.
+-->If the list is not empty, then we define two pointers curr and prev and initialize the pointer curr with the head node.
+-->Traverse the circular linked list using curr to find the node to be deleted and before moving curr to the next node everytime, set prev = curr so that previous will be on one node behind current.
+-->If the node is found, check if it is the only node in the circular linked list. If yes, do head = NULL.
+-->If the circular linked list has more than one node, check if it is the first node of the list. To confirm this, check (curr == head). If yes, then move prev until it reaches the last node. After prev reaches the last node, then set head = head.next and prev.next = head.
+-->If curr is not the first node, we check if it is the last node in the list. To check this is condition (curr.next == head).
+-->If curr is the last node. Do prev.next = head and delete the node curr by applying free(curr).
+-->If the node to be deleted is neither the first node nor the last node, then set prev.next = temp.next.
+
+
+Node* deleteNode(Node *head, int key)
+{	
+    // Check if head is a empty node
+    if(head == NULL)
+    {
+        return head;
+    } 
+	
+    // Create two variable curr and prev
+    Node *curr = head;
+    Node *prev = head;
+	
+    // Iterate till next node of prev is not equal to head
+    while(prev->next != head)
+    {
+        prev = prev->next;
+    } 
+
+    // When the list has only one node and it happens to be the key either
+    if ((prev == head) && (head->data == key)) 
+    {
+        head = NULL;
+        return head;
+    }
+
+    bool found = false;
+    
+    // Iterate till next node of curr is not equal to head
+    while(curr->next != head)
+    {	
+        // Check if the value of curr node is equal to key
+        if(curr->data == key)
+        {
+            found = true;
+            break;
+        }
+        
+        prev = curr;
+        curr = curr->next;
+    }
+	
+    if(curr->data == key || (found && curr != head))
+    {
+        prev->next = curr->next;
+    }
+	
+    // If the value of head node is equal to key
+    if(found && curr == head)
+    {
+        head = head->next;
+        prev->next = head;
+    }
+	
+    // Return the updated head node
+    return head;
+}
