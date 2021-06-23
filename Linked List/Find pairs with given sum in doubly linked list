@@ -1,0 +1,54 @@
+TC=O(N^2),SC=O(1)
+
+-->We will find all the possible pairs by iterating over the whole doubly linked list N times.
+->At any time if the sum of any pair is equal to K, we will return TRUE else keep on iterating.
+
+ 
+-->Initialise a pointer PTR1= HEAD, and it will be used to iterate over the linked list.
+-->Iterate while PTR1 is not NULL :
+-->Initialise a pointer PTR2= PTR1->NEXT.
+-->Iterate while PTR2 is not NULL:
+-->If the sum of values at PTR1 and PTR2 is equal to K then return true.
+  PTR2 = PTR2->NEXT.
+  PTR1 = PTR1->NEXT;
+-->Return FALSE.
+
+
+
+
+TC=O(N),SC=O(1)
+
+bool findPair(Node* head, int k)
+{
+    Node * start = head;
+    Node * end = head;
+
+    // Traverse the linked list to the end
+    while (end->next != NULL)
+    {
+        end = end->next;
+    }
+
+    while (start != end)
+    {
+        int val = start->data + end->data;
+        if (val == k)
+        {
+            return true;
+        }
+
+        if (val < k)
+        {
+            start = start->next;
+        }
+
+        else
+        {
+            end = end->prev;
+        }
+        
+    }
+
+    return false;
+}
+
