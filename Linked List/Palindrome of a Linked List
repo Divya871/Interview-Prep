@@ -1,8 +1,23 @@
-TC=O(L),SC=O(L)----L=length of LL
+TC=O(2*N),SC=O(N)
 
 -->We all know that stack is based on FILO(First In Last Out) principle.
 -->We will keep pushing all the elements of Linked List into the stack.
 -->once the linked list is fully traversed we will start popping the elements out of the stack and comparing with the linked list’s elements.
+
+
+TC=O(N),SC=O(N)+O(N)
+
+//RECURSION
+
+Algorithm:
+
+->Make a recursive function isPalindromeHelper(left, right) {pass left pointer by its reference}, this function checks whether the list between left and right is palindrome or not.
+
+->Call the function: isPalindromeHelper(head, head).
+->Base case: if right is equal to NULL, return true
+->Call the next recursive state: isPalindromeHelper(left, right->next).
+->If the sub-list is not palindrome or the value at ‘left’ node is not equal to ‘right’ node, return false.
+->Else, move the ‘left’ pointer to its next node and return true from the current recursive state.
 
 TC=O(N),SC=O(1)
 
