@@ -1,0 +1,30 @@
+TC=O(N^2),SC=O(1)
+
+->A brute force approach could be to use two nested loops to check whether an element occurs multiple times or not.
+->The outer loop picks the elements one by one from the linked list.
+->And the inner loop iterates over the rest of the linked list to compare the picked element with the rest of the elements.
+->During comparison if the same element is found (means it’s a duplicate), we remove that element from the list.
+->Return the head of the resulting linked list.
+
+TC=O(N),SC=O(N)
+#include <unordered_set>
+Node *removeDuplicates(Node *head)
+{
+    // Write your code here
+    unordered_set<int>map;
+    Node*curr=head,*prev=NULL;
+    while(curr!=NULL)
+    {if(map.find(curr->data)!=map.end())
+     {   prev->next=curr->next;
+         curr=curr->next;
+     }
+     
+     else
+     {
+         map.insert(curr->data);
+         prev=curr;
+         curr=curr->next;
+     }}
+         
+     
+     return head;}
