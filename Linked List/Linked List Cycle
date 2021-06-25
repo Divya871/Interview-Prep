@@ -1,8 +1,43 @@
-TC=O(N),SC=O(N)
+=====================================TC=O(N^2),SC=O(1)
+
+We are going to have two loops outer-loop and inner-loop 
+
+->Maintain a count of the number of nodes visited in outer-loop.
+->For every node of the outer-loop, start the inner loop from head.
+->If the inner-loop visits the node next to the outer-loop node, then return true, else repeat the process for the next iteration of outer-loop.
+->If outer-loop reaches the end of list or null, then return false.
+
+bool detectCycle(Node *head)
+{
+    int numberOfNodesPassed = 0;
+    Node *outerLoopNode = head;
+    while (outerLoopNode != NULL)
+    {
+        numberOfNodesPassed++;
+        outerLoopNode = outerLoopNode->next;
+        Node *innerLoopNode = head;
+        int counterForInnerLoop = numberOfNodesPassed;
+        while (counterForInnerLoop--)
+        {
+            //  We found a repetitive Node/ Cycle
+            if (innerLoopNode == outerLoopNode)
+            {
+                return true;
+            }
+            innerLoopNode = innerLoopNode->next;
+        }
+    }
+
+    //  We didn't found any Cycle
+    return false;
+}
+
+
+======================================TC=O(N),SC=O(N)
 
  -->Store each node in a set until there are no new nodes available and the first node which is already in the set will be the start of the loop.
 
-TC=O(N),SC=O(1)
+======================================TC=O(N),SC=O(1)
 
 bool hasCycle(ListNode *head) {
         ListNode*slow=head;
