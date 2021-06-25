@@ -1,4 +1,15 @@
-  void removeLoop(Node* head)
+TC=O(N),SC=O(N)
+
+->Create a hash set.
+->Create a reference pointer ptr pointing to head .
+->Move the ptr forward until ptr.next is not NULL or ptr.next is not present in hashSet
+->If we encounter ptr.next already present in hashSet then set ptr.next to NULL
+ 
+ 
+ 
+TC=O(N),SC=O(1)
+ 
+ void removeLoop(Node* head)
     {
         Node*slow=head;
         Node*fast=head;
