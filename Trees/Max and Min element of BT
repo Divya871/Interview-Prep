@@ -1,0 +1,18 @@
+ int findMax(Node *root)
+    {
+        //code here
+        if(root==NULL){return -(int)1e9;}
+        int l=findMax(root->left);
+        int r=findMax(root->right);
+        return max(max(l,r),root->data);
+    }
+    
+    
+    int findMin(Node *root)
+    {
+        //code here
+        if(root==NULL){return (int)1e9;}
+        int l=findMin(root->left);
+        int r=findMin(root->right);
+        return min(min(l,r),root->data);
+    }
