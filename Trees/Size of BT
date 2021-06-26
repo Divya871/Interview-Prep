@@ -1,0 +1,8 @@
+int getSize(Node* node)
+{
+   // Your code here
+   if(node==NULL){return nullptr;}
+   int l=size(node->left);
+   int r=size(node->right);
+   return l+r+1;
+}
