@@ -1,0 +1,16 @@
+bool nodeToRoot(TreeNode*root,int data,vector<int>&ans)
+{
+    if(root==NULL){return false;}
+    if(root->val==data){ans.push_back(root->val);return true;}
+    bool res=nodeToRootPath(root->left,data) || nodeToRootPath(root->right,data);
+    if(res)
+    {ans.push_back(root->val);}
+    return res;
+}
+
+
+
+*/------------------------------------------------------*/
+
+If return type hai toh use this.
+
