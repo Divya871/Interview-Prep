@@ -14,3 +14,20 @@ bool nodeToRoot(TreeNode*root,int data,vector<int>&ans)
 
 If return type hai toh use this.
 
+vector<TreeNode*>nodeToRoot(TreeNode* root,int data)
+{   
+    if(root==NULL) { return {};}
+    if(root->val==data) { return {root;}}
+    
+    vector<TreeNode*>left=nodeToRoot(root->left,data);
+    if(left.size()!=0)
+    {  left.push_back(root); return left;}
+    
+   vector<TreeNode*>right=nodeToRoot(root->right,data);
+    if(right.size()!=0)
+    {  right.push_back(root); return right;}
+    
+    return {};
+    }
+    
+    
