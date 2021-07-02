@@ -1,0 +1,15 @@
+void rootToNodePath(Node*root)
+{  
+   if(root==NULL){return false;}
+   ans.push_back(root->data);
+   
+   if(root->data==data){return true;}
+   
+   bool res=rootToNodePath(root->left,data) || rootToNodePath(root->right,data);
+   {return true;}
+   
+   ans.pop_back();
+   
+   return false;
+   
+}
