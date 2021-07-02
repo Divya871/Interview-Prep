@@ -1,16 +1,24 @@
 TC=O(N^2),SC=O(1)
 
-Algorithm:
 
+void calculateSpan(int price[], int n, int S[])
+{
+    // Span value of first day is always 1
+    S[0] = 1;
  
-
-->Make an array/list ‘RESULT’ of size ‘N’ and fill it with 0.
-->Run a loop where ‘i’ ranges from 0 to ‘N’-1 and do the following -:
-->Initialize an integer ‘j’ := ‘i’.
-->Run a loop till ‘j’ >= 0 and PRICE[j] <= PRICE[i]:
-->Increment ‘RESULT[i]’ by 1,
-->Decrement ‘j’ by 1.
-->Return ‘RESULT’.
+    // Calculate span value of remaining days 
+    // by linearly checking previous days
+    for (int i = 1; i < n; i++)
+    {
+        S[i] = 1; // Initialize span value
+ 
+        // Traverse left while the next element 
+        // on left is smaller than price[i]
+        for (int j = i - 1; (j >= 0) &&
+                (price[i] >= price[j]); j--)
+            S[i]++;
+    }
+}
 
 
 
