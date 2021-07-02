@@ -1,0 +1,14 @@
+void oneChild(Node*root,vector<int>&ans)
+{  if(root==NULL || (root->left==NULL && root->right==NULL) {return;}
+   
+   if(root->left==NULL || root->right==NULL){ans.push_back(root);}
+   
+   oneChild(root->left,ans);
+   oneChild(root->right,ans);
+ }
+
+vector<int>exactlyOneChild(Node*root)
+{   vector<int>ans;
+    oneChild(root,ans);
+    return ans;
+}
