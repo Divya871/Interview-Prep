@@ -1,0 +1,7 @@
+void connected()
+{  for(int i=0;i<V;i++)
+   {  if(!vis[i])
+       {  BFS/DFS }
+    }
+ }
+  
