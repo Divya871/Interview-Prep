@@ -1,0 +1,12 @@
+int count(Node*root)
+{  
+   if(root==NULL || (root->left==NULL && root->right==NULL){return 0;}
+   
+   int l=count(root->left);
+   int r=count(root->right);
+   
+   int ans=l+r;
+   
+   if(node->left==NULL || node->right==NULL){ans++;}
+   return ans;
+ }
