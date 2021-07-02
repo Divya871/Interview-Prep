@@ -1,0 +1,25 @@
+Recursively-->
+
+int find(Node*root,int data)
+{  if(root==NULL){return NULL;}
+   if(root->data==data) {return true;}
+   if(root->data > data)
+   { find(root->left,data);}
+   
+   else {find(root->right,data);}
+}
+
+
+Iteratively-->
+
+int find(Node*root,int data)
+{  TreeNode*curr=root;
+   while(curr!=NULL)
+   { if(curr->data==data) {return true;}
+   if(curr->data > data)
+   { curr=curr->left;}
+   
+   else 
+   {curr=curr->right;}
+   
+   return false;}
