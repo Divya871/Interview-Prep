@@ -1,0 +1,14 @@
+int findMax(Node*root)
+{  Node*curr=root;
+   while(root->right!=NULL)
+   {  curr=curr->right;}
+ return curr;
+}
+
+
+int findMin(Node*root)
+{  Node*curr=root;
+   while(root->left!=NULL)
+   {  curr=curr->left;}
+ return curr;
+}
