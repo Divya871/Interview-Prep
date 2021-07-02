@@ -1,3 +1,19 @@
+TC=O(N^2),SC=O(1)
+
+Algorithm:
+
+ 
+
+->Make an array/list ‘RESULT’ of size ‘N’ and fill it with 0.
+->Run a loop where ‘i’ ranges from 0 to ‘N’-1 and do the following -:
+->Initialize an integer ‘j’ := ‘i’.
+->Run a loop till ‘j’ >= 0 and PRICE[j] <= PRICE[i]:
+->Increment ‘RESULT[i]’ by 1,
+->Decrement ‘j’ by 1.
+->Return ‘RESULT’.
+
+
+
 TC=O(N),SC=O(N)
  vector<int>NGOL(int arr[],int n)
     {   stack<int>st;
