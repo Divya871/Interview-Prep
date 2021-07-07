@@ -1,0 +1,31 @@
+ int dfs(int i,int j,int n,int m,vector<vector<int>>& grid,vector<vector<int>>& dir)
+  {
+    grid[i][j]=0;
+    int area=1;
+    for(int d=0;d<dir.size();d++)
+    {
+      int r=i+dir[d][0],c=j+dir[d][1];
+       if(r>=0 && c>=0 && r<n && c<m && grid[r][c]==1)
+       {
+         area+=dfs(r,c,n,m,grid,dir);
+       }
+    }
+   return area;
+  }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int n=grid.size(),m=grid[0].size();
+        vector<vector<int>>dir={{0,1},{0,-1},{1,0},{-1,0}};
+        if(n==0 || m==0){return 0;}
+        int area=0;
+         for (int i = 0; i < n; i++)
+      {
+         for(int j=0;j<m;j++)
+      {
+         if(grid[i][j]==1)
+      {
+            area=max(area,dfs(i,j,n,m,grid,dir));
+      }
+      }
+    }
+         return area;
+    }
