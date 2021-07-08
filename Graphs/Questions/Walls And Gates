@@ -1,0 +1,44 @@
+void wallsAndGates(vector<vector<int>> &grid) {
+        // write your code here
+        queue<int>q;
+        vector<vector<int>>dir{{1,0},{0,1},{0,-1},{-1,0}};
+        int n=grid.size(),m=grid[0].size();
+
+        int distance=0,rooms=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            { if(grid[i][j]==0){q.push(i*m+j);}
+              else if(grid[i][j]==2147483647)
+                {rooms++;}
+            }
+        }
+        
+
+        while(!q.empty())
+        {
+            int size=q.size();
+            while(size--)
+            {
+                int idx=q.front();q.pop();
+                int r=idx/m,c=idx%m;
+
+                for(int d=0;d<dir.size();d++)
+                {
+                    int x=r+dir[d][0];int y=c+dir[d][1];
+                    if(x>=0 && y>=0 && x<n && y<m && grid[x][y]==2147483647)
+                    {   rooms--;
+                        grid[x][y]=distance+1;
+                        q.push(x*m+y);
+
+                        if(rooms==0)
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+        distance++;
+        }
+        return;
+    }
