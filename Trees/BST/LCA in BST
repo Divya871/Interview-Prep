@@ -1,0 +1,18 @@
+TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+{
+    TreeNode *LCA = nullptr, *curr = root;
+    while (curr != nullptr)
+    {
+        if (curr->val < p->val && curr->val < q->val)
+            curr = curr->right;
+        else if (curr->val > p->val && curr->val > q->val)
+            curr = curr->left;
+        else
+        {
+            LCA = curr;
+            break;
+        }
+    }
+
+    return (LCA != nullptr && findData(LCA, p->val) && findData(LCA, q->val)) ? LCA : nullptr;
+}
