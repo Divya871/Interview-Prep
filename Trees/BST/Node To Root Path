@@ -1,0 +1,17 @@
+vector<TreeNode *> nodeToRootPath(TreeNode *root, int data)
+{
+    TreeNode *curr = root;
+    vector<TreeNode *> ans;
+    while (curr != nullptr)
+    {
+        ans.push_back(curr);
+        if (curr->val == data)
+            break;
+        else if (curr->val < data)
+            curr = curr->right;
+        else
+            curr = curr->left;
+    }
+
+    return ans;
+}
