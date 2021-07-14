@@ -1,0 +1,34 @@
+ListNode* reverse(ListNode*head)
+{
+    ListNode*prev=NULL;
+    ListNode*curr=head;
+    ListNode*n;
+    while(curr!=NULL)
+    {
+        n=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=n;
+    }
+    head=prev;
+    return head;
+}
+void unfold(ListNode *head)
+{   
+    ListNode*h1=head;
+    ListNode*h2=head->next;
+    ListNode*c1=h1;
+    ListNode*c2=h2;
+    
+    while(c2!=NULL && c2->next!=NULL)
+    {
+        ListNode*f=c2->next;
+        c1->next=f;
+        c2->next=f->next;
+        c1=f;
+        c2=c1->next;
+    }
+    h2=reverse(h2);
+    c1->next=h2;
+    return ;
+}
