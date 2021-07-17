@@ -1,0 +1,35 @@
+TreeNode*rightMost(TreeNode*node,TreeNode*curr)
+    {
+        while(node->right!=NULL && node->right!=curr)
+        {node=node->right;}
+        return node;
+    }
+    
+   void morrisInorder(TreeNode *root)
+{
+    TreeNode *curr = root;
+    while (curr != nullptr)
+    {
+        TreeNode *next = curr->left;
+        if (next == nullptr)
+        {
+           cout << curr->val << endl;
+           curr = curr->right;
+        }
+        else
+        {
+            TreeNode *rightMostNode = rightMost(next, curr);
+            if (rightMostNode->right == nullptr)
+            {                                // thread creation block
+                rightMostNode->right = curr;// thread is created
+                cout << curr->val << endl; 
+                curr = curr->left;
+            }
+            else
+            {                                   // thread destroy block
+                rightMostNode->right = nullptr; // thread is cut down
+                curr = curr->right;
+            }
+        }
+    }
+   }
