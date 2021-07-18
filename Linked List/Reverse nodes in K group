@@ -1,0 +1,55 @@
+ int length(ListNode*head)
+    {
+        int len=0;
+        while(head!=NULL)
+        {
+            len++;
+            head=head->next;
+        }
+        return len;
+    }
+    
+    ListNode*th=NULL;
+    ListNode*tt=NULL;
+    
+  void addFirstNode(ListNode*node)
+    {
+        if(th==NULL)
+        {th=node;tt=node;}
+        else
+        { node->next=th;
+        th=node;}
+    }
+    
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        int len=length(head);
+        ListNode*curr=head;
+        ListNode*oh=NULL;ListNode*ot=NULL;
+        while(curr!=NULL && len>=k)
+        {
+            int tempK=k;
+            while(tempK-- > 0)
+            {
+                ListNode*f=curr->next;
+                curr->next=NULL;
+                addFirstNode(curr);
+                curr=f;
+            }
+            
+            if(oh==NULL)
+            {
+                oh=th;ot=tt;
+            }
+            else
+            {
+                ot->next=th;
+                ot=tt;
+            }
+            th=tt=NULL;
+            len-=k;
+            
+        }
+        ot->next=curr;
+        return oh;
+        
+    }
