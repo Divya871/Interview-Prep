@@ -1,0 +1,45 @@
+ListNode*th=NULL;ListNode*tt=NULL;
+    void addFirstNode(ListNode*node)
+    {
+        if(th==NULL){th=tt=node;}
+        else
+        {
+            node->next=th;
+            th=node;
+        }
+    }
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        ListNode*prev=NULL;
+        ListNode*curr=head;
+        int idx=1;
+        while(curr!=NULL){
+        while(idx >=m && idx <=n)
+        {
+          ListNode*f=curr->next;
+          curr->next=nullptr;
+          addFirstNode(curr);
+          idx++;
+          curr=f;
+        }
+        
+        if(idx > n)
+       {
+             if(prev!=NULL)
+             {
+                 prev->next=th;
+                 tt->next=curr;
+                 return head;
+             }
+            else
+            {
+                tt->next=curr;
+                return th;
+            }
+        }
+        idx++;
+            prev=curr;
+            curr=curr->next;
+        
+    }
+        return head;
+    }
