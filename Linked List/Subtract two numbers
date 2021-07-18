@@ -1,0 +1,38 @@
+ListNode* subtractTwoNumbers(ListNode* l1, ListNode* l2)
+{   if (l2 == nullptr)
+    return l1;
+    
+    l1=reverse(l1);
+    l2=reverse(l2);
+    
+    ListNode*c1=l1,*c2=l2;
+    ListNode*dummy=new ListNode(-1);
+    ListNode*prev=dummy;
+    int borrow=0;
+    
+    while(c1!=NULL)
+    {
+        int sub=borrow+c1->val-(c2!=NULL ? c2->val:0);
+        if(sub<0)
+        {borrow=-1;
+        sub+=10;}
+        else
+        {borrow=0;}
+        
+        prev->next=new ListNode(sub);
+        prev=prev->next;
+        c1=c1->next;
+        if(c2!=NULL){c2=c2->next;}
+    }
+    
+    ListNode*head=reverse(dummy->next);         // for cases like 999999-999923=000076-->remove zeroes
+    ListNode*curr=head;
+    while(curr!=NULL && curr->val==0)
+    {
+        ListNode*f=curr->next;
+        curr->next=nullptr;
+        curr=f;
+    }
+    
+    return curr!=NULL ? curr:new ListNode(0);
+} 
