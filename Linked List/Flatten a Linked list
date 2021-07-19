@@ -1,0 +1,40 @@
+ Node* mergeTwoLists(Node* l1, Node* l2) {
+      
+      if(l1==NULL && l2==NULL){return NULL;}
+      Node*dummy=new Node(-1);
+      Node*prev=dummy;
+      
+      while(l1!=NULL && l2!=NULL)
+      {
+        if(l1->data <=l2->data)        {
+          prev->bottom=l1;
+          prev=prev->bottom;
+          l1=l1->bottom;
+        }
+        else {
+          prev->bottom=l2;
+          prev=prev->bottom;
+          l2=l2->bottom;
+        }
+      }
+      
+      if(l1==NULL)
+      {
+        prev->bottom=l2;
+      }
+      
+      if(l2==NULL)
+      {
+        prev->bottom=l1;
+      }
+      
+      return dummy->bottom;}
+      
+Node *flatten(Node *root)
+{
+   // Your code here
+   if(root==NULL || root->next==NULL){return root;}
+   root->next=flatten(root->next);
+   root=mergeTwoLists(root,root->next);
+   return root;
+}
