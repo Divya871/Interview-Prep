@@ -1,0 +1,27 @@
+int kthSmallest(TreeNode* root, int k) {
+        int rv=-1;
+        TreeNode*curr=root;
+        while(curr!=NULL)
+        {
+            TreeNode*next=curr->left;
+            if(next==NULL)
+            {  if(--k==0)
+                rv=curr->val;
+                curr=curr->right;
+            }
+            else
+            {
+                TreeNode*rmn=right(next,curr);
+                if(rmn->right==NULL){
+                    rmn->right=curr;
+                    curr=curr->left;}
+                else {
+                    rmn->right=NULL;
+                    if(--k==0)
+                    rv=curr->val;
+                    curr=curr->right;
+                    }
+            }
+        }
+        return rv;
+    }
