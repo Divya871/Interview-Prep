@@ -1,0 +1,13 @@
+TreeNode*inorder(vector<int>&in,int si,int ei)
+{   if(si>ei){return nullptr;}
+    int mid=(si+ei)/2;
+    TreeNode*node=new TreeNode(in[mid]);
+    node->left=inorder(in,si,mid-1);
+    node->right=inorder(in,mid+1,ei);
+    return node;
+}
+
+TreeNode *constructFromInOrder(vector<int> &in)
+{
+    return inorder(in,0,in.size()-1);
+}
