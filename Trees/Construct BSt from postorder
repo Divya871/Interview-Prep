@@ -1,0 +1,21 @@
+ TreeNode *bstFromPostorder(vector<int> &preorder, int lr, int rr, vector<int> &idx)
+{
+    int i = idx[0];
+    if (i <=-1 || preorder[i] < lr || preorder[i] > rr)
+        return nullptr;
+
+    TreeNode *root = new TreeNode(preorder[i]);
+    idx[0]--;
+   root->right = bstFromPostorder(preorder, root->val, rr, idx);
+    root->left = bstFromPostorder(preorder, lr, root->val, idx);
+    
+
+    return root;
+}
+
+TreeNode *bstFromPostorder(vector<int> &preorder)
+{
+    vector<int> idx(1, preorder.size()-1);
+    return bstFromPostorder(preorder, -1e9, 1e9, idx);
+}
+
