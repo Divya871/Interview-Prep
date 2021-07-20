@@ -33,3 +33,56 @@ public:
         return st.size() != 0;
     }
 };
+
+
+
+/**********Using morris traversal***************/
+
+class BSTIterator {
+  private:   
+    TreeNode*curr=NULL;
+ TreeNode*right(TreeNode*node,TreeNode*curr)
+    {
+        while(node->right!=NULL && node->right!=curr)
+        {node=node->right;}
+        return node;
+    }
+    
+public:
+    
+    BSTIterator(TreeNode* root) {
+        curr=root;
+    }
+    
+    int next() {
+        int rv=-1;
+        while(curr!=NULL)
+        {
+            TreeNode*next=curr->left;
+            if(next==NULL)
+            {
+                rv=curr->val;
+                curr=curr->right;
+                break;
+            }
+            else
+            {
+                TreeNode*rmn=right(next,curr);
+                if(rmn->right==NULL){
+                    rmn->right=curr;
+                    curr=curr->left;}
+                else {
+                    rmn->right=NULL;
+                    rv=curr->val;
+                    curr=curr->right;
+                    break;}
+            }
+        }
+        return rv;
+    }
+    
+    bool hasNext() {
+        return curr!=NULL;
+    }
+};
+
