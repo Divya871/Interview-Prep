@@ -1,0 +1,49 @@
+Node*rightMost(Node*node,Node*curr)
+    {
+        while(node->right!=NULL && node->right!=curr)
+        {node=node->right;}
+        return node;}
+        
+    //Function to convert binary tree into circular doubly linked list.
+    Node *bTreeToCList(Node *root)
+    {
+    //add code here.
+     Node *curr = root;
+     Node*dumm=new Node(-1);
+     Node*prev=dumm;
+    while (curr != nullptr)
+    {
+        Node *next = curr->left;
+        if (next == nullptr)
+        {
+           prev->right=curr;
+           curr->left=prev;
+           prev=curr;
+           
+           curr = curr->right;
+        }
+        else
+        {
+            Node *rightMostNode = rightMost(next, curr);
+            if (rightMostNode->right == nullptr)
+            {                                // thread creation block
+                rightMostNode->right = curr; // thread is created
+                curr = curr->left;
+            }
+            else
+            {                                   // thread destroy block
+                rightMostNode->right = nullptr; // thread is cut down
+                  prev->right=curr;
+           curr->left=prev;
+           prev=curr;
+           
+           curr = curr->right;
+            }
+        }
+    }
+       Node*head=dumm->next;
+       prev->right=head;
+       head->left=prev;
+       return head;
+    
+    }
