@@ -1,0 +1,41 @@
+ Node*rightMost(Node*node,Node*curr)
+    {
+        while(node->left!=NULL && node->left!=curr)
+        {node=node->left;}
+        return node;
+    }
+    
+    int kthLargest(Node *root, int K)
+    {
+        //Your code here
+    Node *curr = root;
+    Node*rv=NULL;
+    int count=0;
+    while (curr != nullptr)
+    { 
+        Node *next = curr->right;
+        if (next == nullptr)
+        {
+           if(++count==K)
+           rv=curr;
+           curr = curr->left;
+        }
+        else
+        {
+            Node *rightMostNode = rightMost(next, curr);
+            if (rightMostNode->left == nullptr)
+            {                                // thread creation block
+                rightMostNode->left= curr; // thread is created
+                curr = curr->right;
+            }
+            else
+            {                                   // thread destroy block
+                rightMostNode->left = nullptr; // thread is cut down
+              if(++count==K)
+               rv=curr;
+           curr = curr->left;
+            }
+        }
+    }
+    return rv->data;
+    }
