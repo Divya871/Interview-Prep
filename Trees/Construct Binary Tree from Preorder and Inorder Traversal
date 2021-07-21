@@ -1,0 +1,15 @@
+ TreeNode*tree(vector<int>& preorder,int psi,int pei, vector<int>& inorder,int isi,int iei)
+    {
+        if(psi>pei){return nullptr;}
+        int idx=isi;
+        TreeNode*node=new TreeNode(preorder[psi]);
+        while(inorder[idx]!=preorder[psi]){idx++;}
+        int tnel=idx-isi;
+        node->left=tree(preorder,psi+1,psi+tnel,inorder,isi,idx-1);
+        node->right=tree(preorder,psi+tnel+1,pei,inorder,idx+1,iei);
+        return node;
+     }
+     
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        return tree(preorder,0,preorder.size()-1,inorder,0,inorder.size()-1);
+    }
