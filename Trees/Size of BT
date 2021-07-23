@@ -1,3 +1,5 @@
+*********************** RECURSIVELY ********************
+
 int getSize(Node* node)
 {
    // Your code here
@@ -6,3 +8,26 @@ int getSize(Node* node)
    int r=size(node->right);
    return l+r+1;
 }
+
+
+******************* ITERATIVELY *************************
+
+int getSize(Node* node)
+{
+   // Your code here
+   if(node==NULL){return NULL;}
+   queue<Node*>q;
+   q.push(node);
+   int level=0;
+   while(!q.empty())
+   {
+       int size=q.size();
+       while(size-->0)
+       {
+           Node*rn=q.front();q.pop();
+           if(rn->left!=NULL){q.push(rn->left); level++;}
+           if(rn->right!=NULL){q.push(rn->right); level++;}
+        }
+   }
+   return level+1;
+   }
