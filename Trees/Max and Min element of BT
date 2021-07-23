@@ -1,3 +1,5 @@
+ ******* RECURSIVELY ***************
+ 
  int findMax(Node *root)
     {
         //code here
@@ -15,4 +17,57 @@
         int l=findMin(root->left);
         int r=findMin(root->right);
         return min(min(l,r),root->data);
+    }
+    
+    
+    *************** ITERATIVELY ************
+    
+     Node*right(Node*node,Node*curr)
+    {
+        while(node->right!=NULL && node->right!=curr){node=node->right;}
+        return node;
+    }
+    int findMax(Node *root)
+    {
+        //code here
+        int max_val=-(int)1e9;
+        Node*curr=root;
+        while(curr!=NULL)
+        {
+            Node*next=curr->left;
+            if(next==NULL)
+            {
+                max_val=max(max_val,curr->data);
+                curr=curr->right;
+            }
+            else
+            {
+                Node*rmn=right(next,curr);
+                if(rmn->right==NULL){rmn->right=curr;curr=curr->left;}
+                else {rmn->right=NULL;max_val=max(max_val,curr->data);curr=curr->right;}
+            }
+        }
+        return max_val;
+    }
+    int findMin(Node *root)
+    {
+        //code here
+         int min_val=(int)1e9;
+        Node*curr=root;
+        while(curr!=NULL)
+        {
+            Node*next=curr->left;
+            if(next==NULL)
+            {
+                min_val=min(min_val,curr->data);
+                curr=curr->right;
+            }
+            else
+            {
+                Node*rmn=right(next,curr);
+                if(rmn->right==NULL){rmn->right=curr;curr=curr->left;}
+                else {rmn->right=NULL;min_val=min(min_val,curr->data);curr=curr->right;}
+            }
+        }
+        return min_val;
     }
