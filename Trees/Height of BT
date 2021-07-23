@@ -1,7 +1,31 @@
+***************** RECURSIVELY ******************
+
 int height(struct Node* node){
         // code here 
         if(node==NULL){return 0;}
         int l=height(node->left);
         int r=height(node->right);
         return max(l,r)+1;
+    }
+
+
+****************ITERATIVELY *********************
+
+   int height(struct Node* node){
+        // code here 
+      queue<Node*>q;
+      q.push(node);
+      int level=0;
+      while(!q.empty())
+      {
+          int size=q.size();
+          while(size-->0)
+          {
+              Node*rn=q.front();q.pop();
+              if(rn->left!=NULL){q.push(rn->left);}
+              if(rn->right!=NULL){q.push(rn->right);}
+          }
+          level++;
+      }
+      return level;
     }
