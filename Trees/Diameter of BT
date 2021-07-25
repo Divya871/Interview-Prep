@@ -1,0 +1,14 @@
+TC=O(N^2)
+
+  int diameterOfBinaryTree(TreeNode* root) {
+        if(root==NULL){return 0;}
+        int ld=diameterOfBinaryTree(root->left);
+        int rd=diameterOfBinaryTree(root->right);
+        int lh=height(root->left);
+        int rh=height(root->right);
+        return max(max(ld,rd),lh+rh+2);
+    }
+    
+    
+    
+TC=O(N)
