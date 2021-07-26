@@ -1,35 +1,35 @@
- TreeNode*rightMost(TreeNode*node,TreeNode*curr)
-    {
-        while(node->right!=NULL && node->right!=curr)
-        {node=node->right;}
-        return node;
-    }
-    
-   void morrisInorder(TreeNode *root)
+TreeNode*right(TreeNode*root,TreeNode*curr)
 {
-    TreeNode *curr = root;
-    while (curr != nullptr)
+    while(root->right!=nullptr && root->right!=curr){root=root->right;}
+    return root;
+}
+
+vector<int> morrisInTraversal(TreeNode* root) {
+vector<int>ans;
+TreeNode*curr=root;
+while(curr!=NULL)
+{
+    TreeNode*next=curr->left;
+    if(next==NULL)
     {
-        TreeNode *next = curr->left;
-        if (next == nullptr)
+        ans.push_back(curr->val);
+        curr=curr->right;
+    }
+    else
+    {
+        TreeNode*rmn=right(next,curr);
+        if(rmn->right==NULL)
         {
-           cout << curr->val << endl;
-           curr = curr->right;
+            rmn->right=curr;
+            curr=curr->left;
         }
         else
         {
-            TreeNode *rightMostNode = rightMost(next, curr);
-            if (rightMostNode->right == nullptr)
-            {                                // thread creation block
-                rightMostNode->right = curr; // thread is created
-                curr = curr->left;
-            }
-            else
-            {                                   // thread destroy block
-                rightMostNode->right = nullptr; // thread is cut down
-                cout << curr->val << endl;
-                curr = curr->right;
-            }
+            rmn->right=NULL;
+            ans.push_back(curr->val);
+            curr=curr->right;
         }
     }
-   }
+}
+return ans;
+}
