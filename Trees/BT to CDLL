@@ -1,0 +1,49 @@
+
+  Node*right(Node*root,Node*curr)
+{
+    while(root->right!=nullptr && root->right!=curr){root=root->right;}
+    return root;
+}
+
+Node* bToDLL(Node* root)
+{
+   Node*dummy=new Node(-1);
+    Node*prev=dummy;
+    
+    Node*curr=root;
+   while(curr!=NULL)
+{
+    Node*next=curr->left;
+    if(next==NULL)
+    {
+        prev->right=curr;
+        curr->left=prev;
+        prev=curr;
+        curr=curr->right;
+    }
+    else
+    {
+       Node*rmn=right(next,curr);
+        if(rmn->right==NULL)
+        {
+            rmn->right=curr;
+            curr=curr->left;
+        }
+        else
+        {
+            rmn->right=NULL;
+            prev->right=curr;
+        curr->left=prev;
+        prev=curr;
+        curr=curr->right;
+        }
+    }
+}
+Node*head=dummy->right;
+dummy->right=head->left=NULL;
+prev->right=head;
+head->left=prev;
+
+return head;
+    
+    }
