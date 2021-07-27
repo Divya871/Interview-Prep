@@ -1,0 +1,14 @@
+  void binSort(int A[], int N)
+    {
+       int i=0;
+    int p=-1;
+    while(i<N)
+    {
+        if(A[i]==0)
+        {
+            p++;
+            swap(A[i],A[p]);
+        }
+        i++;
+    }
+    }
