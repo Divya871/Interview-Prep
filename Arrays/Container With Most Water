@@ -1,0 +1,12 @@
+    int maxArea(vector<int>& arr) {
+        int n=arr.size();
+        int i=0,j=n-1;
+        int maxArea=0;
+        
+        while(i<j)
+        {
+            int w=j-i;
+            maxArea=arr[i]<arr[j] ? max(maxArea,arr[i++]*w) : max(maxArea,arr[j--]*w);
+        }
+        return maxArea;
+    }
