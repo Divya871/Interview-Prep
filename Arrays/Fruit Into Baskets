@@ -1,0 +1,19 @@
+  int totalFruit(vector<int>&arr) {
+        int n=arr.size();
+        vector<int>freq(400001,0);
+        int si=0,ei=0,count=0,len=0;
+        while(ei<n)
+        {
+            if(freq[arr[ei++]]++ ==0)
+            {
+                count++;
+            }
+            
+            while(count>2)
+            {
+                if(freq[arr[si++]]-- == 1){count--;}
+            }
+            len=max(len,ei-si);
+        }
+        return len;
+    }
