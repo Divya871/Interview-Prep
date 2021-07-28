@@ -1,0 +1,19 @@
+    bool isVowel(char ch) {
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+    
+    int maxVowels(string s, int k) {
+      int n = s.length(), si = 0, ei = 0, vowelCount = 0, maxVowelCount = 0;
+        while (ei < n) {
+            if (isVowel(s[ei++]))
+                vowelCount++;
+
+            if (ei - si == k) {
+                maxVowelCount = max(maxVowelCount, vowelCount);
+                if (isVowel(s[si++]))
+                    vowelCount--;
+            }
+        }
+
+        return maxVowelCount;
+    }
