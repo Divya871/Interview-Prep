@@ -1,0 +1,36 @@
+string findSubString(string str)
+    {  int n=str.length();
+       if (str.length() <= 1)
+            return str;
+       vector<int>freq(128,0);
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (freq[str[i]] == 0) {
+                freq[str[i]] = 1;
+                count++;
+            }
+        }
+
+        int actualLen = count;
+        int si = 0, ei = 0, gsi = 0, len = (int) 1e9;
+
+        while (ei < n) {
+            if (freq[str[ei++]]-- > 0)
+                count--;
+
+            while (count == 0) {
+                if (ei - si < len) {
+                    len = ei - si;
+                    gsi = si;
+                }
+
+                if (freq[str[si++]]++ == 0)
+                    count++;
+            }
+
+            if (len == actualLen)
+                break;
+        }
+
+        return str.substr(gsi,  len);
+    }  
