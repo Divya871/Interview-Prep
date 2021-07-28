@@ -1,0 +1,21 @@
+    int atMostKDistinct(vector<int>& arr , int k) {
+       vector<int>freq(20001,0);
+        int n = arr.size(), si = 0, ei = 0, count = 0, ans = 0;
+
+        while (ei < n) {
+            if (freq[arr[ei++]]++ == 0)
+                count++;
+
+            while (count > k) {
+                if (freq[arr[si++]]-- == 1)
+                    count--;
+            }
+            ans += ei - si;
+        }
+
+        return ans;
+    }
+    
+    int subarraysWithKDistinct(vector<int>& arr ,int k) {
+        return atMostKDistinct(arr, k) - atMostKDistinct(arr, k - 1);
+    }
