@@ -1,0 +1,20 @@
+int lengthOfLongestSubstringKDistinct(string &s, int k) {
+        // write your code here
+          int n=s.length();
+         vector<int>freq(128,0);
+        int si=0,ei=0,count=0,len=0;
+        while(ei<n)
+        {
+            if(freq[s[ei++]]++ ==0)
+            {
+                count++;
+            }
+            
+            while(count>k)
+            {
+                if(freq[s[si++]]-- == 1){count--;}
+            }
+            len=max(len,ei-si);
+        }
+        return len;
+    }
