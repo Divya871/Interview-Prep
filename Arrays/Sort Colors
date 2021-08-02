@@ -1,0 +1,20 @@
+ void sortColors(vector<int>& nums) {
+        int n=nums.size();
+        int si=0,ei=n-1,ptr=0;
+        while(ptr<=ei)
+        {
+            if(nums[ptr]==0)
+            {
+                swap(nums[ptr],nums[si]);
+                ptr++;
+                si++;
+            }
+            else if(nums[ptr]==2)
+            {
+                swap(nums[ptr],nums[ei]);
+                ei--;
+            }
+            else {ptr++;}
+        }
+        return ;
+    }
