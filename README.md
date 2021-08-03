@@ -2,6 +2,6 @@
 ## Repository for #100DaysOfCode. This repo will contain the solutions to the questions I solve and their approach for future reference.
 
 Day 1 (03/08/21)
-Started with Linked List. Solved 10 questions of linked list (find middle, reverse list, check palindrome, reorder list, merge two sorted lists, remove duplicates from sorted lists, linked list sorting, merge K sorted lists)
+Started with Linked List. Solved 5 questions of linked list (find middle, reverse list, check palindrome, reorder list, unorder list)
 Started with Trees. Solved 
 
