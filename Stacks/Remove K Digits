@@ -1,0 +1,23 @@
+    string removeKdigits(string num, int k) {
+        vector<char>st;
+        for(int i=0;i<num.size();i++)
+        {
+            char ch=num[i];
+            while(st.size()!=0 && st.at(st.size()-1)>ch && k>0)
+            {
+                k--;
+                st.pop_back();
+            }
+            st.push_back(ch);
+        }
+        while(k-->0){st.pop_back();}
+        string ans="";
+        bool flag=false;
+        for(char ch:st)
+        {
+            if(ch=='0' && !flag){continue;}
+            flag=true;
+            ans.push_back(ch);
+        }
+        return ans.size()==0?"0":ans;
+    }
