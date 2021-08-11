@@ -1,0 +1,24 @@
+string removeOuterParentheses(string s) {
+        string ans="";
+        stack<int>st;
+        for(int i=0;i<s.length();i++)
+        {
+         char ch=s[i];
+         if(ch=='('){
+           if(st.size()>0)
+            {
+                ans.push_back(ch);
+            }
+             st.push(ch);
+            }
+            else
+            { 
+                st.pop();
+                if(st.size()>0)
+                {
+                 ans.push_back(ch);
+                } 
+         }
+        }
+        return ans;
+    }
