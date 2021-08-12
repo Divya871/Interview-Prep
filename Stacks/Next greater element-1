@@ -1,4 +1,32 @@
-     vector<int> nextLargerElement(vector<int>&nums2){
+   BRUTE=========
+   
+   vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+       vector<int> res;
+        
+        for (int i=0; i<nums1.size(); i++) {
+            int max = -1;
+            for (int j=nums2.size()-1; j>=0; j--) {
+                int val = nums2[j];
+                
+                if (val > nums1[i]) {
+                    max = val;
+                } 
+                
+                if (val == nums1[i]) {
+                    break;
+                } 
+            }
+            res.push_back(max);
+        }
+        
+              
+        return res;
+    }
+    
+    
+    BETTER========
+    
+    vector<int> nextLargerElement(vector<int>&nums2){
         // Your code here
         int n=nums2.size();
          vector<int>ans(n,-1);
