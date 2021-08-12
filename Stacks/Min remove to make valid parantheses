@@ -1,1 +1,32 @@
 
+string minRemoveToMakeValid(string s) {
+        vector<int>st;
+        for(int i=0;i<s.length();i++)
+        {
+            char ch=s[i];
+            if(ch=='('){st.push_back(i);}
+            else if(ch==')')
+            {
+                if(!st.empty() && s[st.back()]=='(')
+                {
+                    st.pop_back();
+                }
+                else
+                st.push_back(i);
+            }
+        }
+        
+        string ans="";
+        int idx=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(idx<st.size() && st[idx]==i)
+            {
+                idx++;
+                continue;
+            }
+            ans.push_back(s[i]);
+        }
+        return ans;
+        
+    }
