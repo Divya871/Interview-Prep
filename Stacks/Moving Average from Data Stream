@@ -1,0 +1,25 @@
+class MovingAverage {
+public:
+    queue<int> Queue;
+    int length;
+    double sum;
+   MovingAverage(int size) {
+        length=size;
+        sum=0;
+    }
+
+
+    double next(int val) {
+        
+        if(Queue.size()<length){
+            Queue.push(val);
+            sum+=val;
+            return sum/Queue.size();
+        }
+        sum=sum-Queue.front();
+        Queue.pop();
+        Queue.push(val);
+        sum+=val;
+        return sum/length;
+    }
+};
