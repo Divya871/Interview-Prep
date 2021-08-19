@@ -57,3 +57,51 @@ vector<vector<int>> verticalOrder(TreeNode *root)
 
     return ans;
 }
+
+
+============OTHER WAY==========
+
+class vPair
+    {
+        public:
+        TreeNode*root=NULL;
+        int hl=0;
+        vPair(TreeNode*root,int hl)
+        {
+            this->root=root;
+            this->hl=hl;
+        }
+    };
+vector<vector<int>> verticalOrderTraversal(TreeNode *root)
+{
+            queue<vPair>q;
+        q.push(vPair(root,0));
+        int minHL=0,maxHL=0;
+        unordered_map<int,vector<int>>map;
+        while(!q.empty())
+        {
+            int size=q.size();
+            while(size-->0)
+            {
+                vPair rp=q.front();q.pop();
+                map[rp.hl].push_back(rp.root->val);
+                minHL=min(minHL,rp.hl);
+                maxHL=max(maxHL,rp.hl);
+                
+                if(rp.root->left!=NULL)
+                {
+                    q.push(vPair(rp.root->left,rp.hl-1));
+                }
+                if(rp.root->right!=NULL)
+                {
+                    q.push(vPair(rp.root->right,rp.hl+1));
+                }
+            }
+        }
+        vector<vector<int>>res;
+        while(minHL<=maxHL)
+        {
+            res.push_back(map[minHL++]);
+        }
+        return res;
+}
