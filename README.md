@@ -8,6 +8,13 @@ Completed Stacks and Linked list Revision.
 Gave companies test only.
 
 ## Day 4(17 Aug 2021)
+Gave Companies Test
+
+## Day 5(18 Aug 2021)
+Gave Companies Test
+
+## Day 6(19 Aug 2021)
+
 
 
 
