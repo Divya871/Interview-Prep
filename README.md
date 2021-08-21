@@ -14,6 +14,15 @@ Gave Companies Test
 Gave Companies Test
 
 ## Day 6(19 Aug 2021)
+Did Questions on Trees
+
+## Day 7(20 Aug 2021)
+Did Questions on Trees
+
+## Day 8(21 Aug 2021)
+Did Questions on Trees
+
+
 
 
 
