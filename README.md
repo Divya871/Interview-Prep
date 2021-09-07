@@ -1,4 +1,4 @@
-# Day 1 (7th Sept)
+## Day 1 (7th Sept)
 Revised Linked list
 
 
