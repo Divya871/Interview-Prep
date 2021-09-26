@@ -1,0 +1,35 @@
+ListNode*tails(ListNode*head)
+{if(head==NULL || head->next==NULL){return head;}
+    ListNode*curr=head;
+    while(curr->next!=NULL)
+    {
+        curr=curr->next;
+    }
+    return curr;
+}
+ListNode *segregateOnLastIndex(ListNode *head)
+{ if(head==NULL || head->next==NULL){return head;}
+    ListNode*tail=tails(head);
+    ListNode*smallD=new ListNode(-1);
+    ListNode*largeD=new ListNode(-1);
+    ListNode*s=smallD,*l=largeD;
+    ListNode*curr=head;
+    while(curr!=NULL)
+    {
+        if(curr->val<=tail->val)
+        {
+            s->next=curr;
+            curr=curr->next;
+            s=s->next;
+        }
+        else
+        {
+            l->next=curr;
+            curr=curr->next;
+            l=l->next;
+        }
+    }
+    s->next=l->next=NULL;
+    s->next=largeD->next;
+    return  tail;
+}
