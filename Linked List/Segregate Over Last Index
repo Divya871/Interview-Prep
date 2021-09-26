@@ -1,0 +1,30 @@
+ListNode* segregate(ListNode* head, int pivotIdx)
+{
+  ListNode*pivot=head,*curr=head;
+  while(pivotIdx-->0)
+  {
+      pivot=pivot->next;
+  }
+  ListNode*large=new ListNode(-1),*l=large;
+  ListNode*small=new ListNode(-1),*s=small;
+  while(curr!=NULL)
+  {
+      if(curr!=pivot && curr->val<=pivot->val)
+      {
+          s->next=curr;
+          
+          s=s->next;
+      }
+      else
+          if(curr!=pivot)
+          {
+              l->next=curr;
+              l=l->next;
+          }
+      curr=curr->next;
+  }
+  s->next=pivot->next=l->next=NULL;
+  s->next=pivot;
+  pivot->next=large->next;
+  return small->next;
+}
